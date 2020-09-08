@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="4.0" jmeter="4.0 r1823414">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="测试计划" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="线程组" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="循环控制器" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">6</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">true</boolProp>
+        <stringProp name="ThreadGroup.duration">300</stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="垂直页筛选项接口" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="用户定义的变量" enabled="true">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="_t" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${time_stamp}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">_t</stringProp>
+              </elementProp>
+              <elementProp name="city_id" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${city_id}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">city_id</stringProp>
+              </elementProp>
+              <elementProp name="latlng" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">${coordinates}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">latlng</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">${host}</stringProp>
+          <stringProp name="HTTPSampler.port"></stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/v1/fnbapisrv/vertical/option</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP信息头管理器" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Host</stringProp>
+                <stringProp name="Header.value">${host}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">version</stringProp>
+                <stringProp name="Header.value">7.3</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Klook-App-Version</stringProp>
+                <stringProp name="Header.value">5.41.0</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept</stringProp>
+                <stringProp name="Header.value">*/*</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Signature</stringProp>
+                <stringProp name="Header.value">a09c78ddffbc3b3b651e8513bcb3223aab35704ab5c4583d7a6262fc79ba8c2f</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Access-Type</stringProp>
+                <stringProp name="Header.value">3</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Accept-Language</stringProp>
+                <stringProp name="Header.value">${language}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-TimeStamp</stringProp>
+                <stringProp name="Header.value">${time_stamp}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">_pt</stringProp>
+                <stringProp name="Header.value">a4e9d0a39abd6a2c737d7e52d64d70bd</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-DeviceID</stringProp>
+                <stringProp name="Header.value">8BC4A711-4AD4-4086-BF89-59F64E9B0091-1574149795</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">User-Agent</stringProp>
+                <stringProp name="Header.value">klook/5.41.0 (iPhone; iOS 13.4.1; Scale/2.00)</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Platform</stringProp>
+                <stringProp name="Header.value">${platform}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Currency</stringProp>
+                <stringProp name="Header.value">${currency}</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Klook-Kepler-Id</stringProp>
+                <stringProp name="Header.value">8BC4A711-4AD4-4086-BF89-59F64E9B0091-1574149795</stringProp>
+              </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Gateway</stringProp>
+                <stringProp name="Header.value">ios</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="响应断言" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-547797305">&quot;success&quot;:true</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="域名" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="3208616">host</stringProp>
+            <stringProp name="1135963089">time_stamp</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="-1836823714">
+              <stringProp name="214859654">www.klook.com</stringProp>
+              <stringProp name="-811840068">${__time(,)}</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="平台" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="1874684019">platform</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="2063468361">
+              <stringProp name="103437">iOS</stringProp>
+            </collectionProp>
+            <collectionProp name="-256391534">
+              <stringProp name="-1068855134">mobile</stringProp>
+            </collectionProp>
+            <collectionProp name="-497140421">
+              <stringProp name="1557106716">desktop</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="语言" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="-1613589672">language</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="735568135">
+              <stringProp name="115813226">zh-CN</stringProp>
+            </collectionProp>
+            <collectionProp name="921049255">
+              <stringProp name="96598594">en-US</stringProp>
+            </collectionProp>
+            <collectionProp name="735609653">
+              <stringProp name="115813378">zh-HK</stringProp>
+            </collectionProp>
+            <collectionProp name="735750896">
+              <stringProp name="115813762">zh-TW</stringProp>
+            </collectionProp>
+            <collectionProp name="58121830">
+              <stringProp name="3383">ja</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="货币" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="575402001">currency</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="1935421921">
+              <stringProp name="71585">HKD</stringProp>
+            </collectionProp>
+            <collectionProp name="1906866069">
+              <stringProp name="66894">CNY</stringProp>
+            </collectionProp>
+            <collectionProp name="1972833781">
+              <stringProp name="84326">USD</stringProp>
+            </collectionProp>
+            <collectionProp name="1970521205">
+              <stringProp name="82030">SGB</stringProp>
+            </collectionProp>
+            <collectionProp name="1941039556">
+              <stringProp name="76838">MYR</stringProp>
+            </collectionProp>
+            <collectionProp name="1971773227">
+              <stringProp name="83489">TWD</stringProp>
+            </collectionProp>
+            <collectionProp name="1938793742">
+              <stringProp name="74704">KRW</stringProp>
+            </collectionProp>
+            <collectionProp name="1909882591">
+              <stringProp name="69026">EUR</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="城市ID" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="785439855">city_id</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="85921">
+              <stringProp name="50">2</stringProp>
+            </collectionProp>
+            <collectionProp name="85997">
+              <stringProp name="52">4</stringProp>
+            </collectionProp>
+            <collectionProp name="86073">
+              <stringProp name="54">6</stringProp>
+            </collectionProp>
+            <collectionProp name="55985567">
+              <stringProp name="1576">19</stringProp>
+            </collectionProp>
+            <collectionProp name="56013125">
+              <stringProp name="1606">28</stringProp>
+            </collectionProp>
+            <collectionProp name="56013163">
+              <stringProp name="1607">29</stringProp>
+            </collectionProp>
+            <collectionProp name="56016406">
+              <stringProp name="1631">32</stringProp>
+            </collectionProp>
+            <collectionProp name="85959">
+              <stringProp name="51">3</stringProp>
+            </collectionProp>
+            <collectionProp name="56020181">
+              <stringProp name="1669">49</stringProp>
+            </collectionProp>
+            <collectionProp name="86035">
+              <stringProp name="53">5</stringProp>
+            </collectionProp>
+            <collectionProp name="86111">
+              <stringProp name="55">7</stringProp>
+            </collectionProp>
+            <collectionProp name="56086563">
+              <stringProp name="1821">96</stringProp>
+            </collectionProp>
+            <collectionProp name="56015553">
+              <stringProp name="1629">30</stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="坐标" enabled="true">
+          <collectionProp name="UserParameters.names">
+            <stringProp name="1871919611">coordinates</stringProp>
+          </collectionProp>
+          <collectionProp name="UserParameters.thread_values">
+            <collectionProp name="982328365">
+              <stringProp name="-2112737433">22.53697931320191,114.0253161478252</stringProp>
+            </collectionProp>
+            <collectionProp name="-1206094858">
+              <stringProp name="-2089480997">122.53697931320191,119.0253161478252</stringProp>
+            </collectionProp>
+            <collectionProp name="1323856645">
+              <stringProp name="-932442485">45.53697931320191,119.0253161478252</stringProp>
+            </collectionProp>
+            <collectionProp name="-942395496">
+              <stringProp name="-198378672">122.53697931320191,13.0253161478252</stringProp>
+            </collectionProp>
+            <collectionProp name="25080">
+              <stringProp name="0"></stringProp>
+            </collectionProp>
+          </collectionProp>
+          <boolProp name="UserParameters.per_iteration">false</boolProp>
+        </UserParameters>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="察看结果树" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
